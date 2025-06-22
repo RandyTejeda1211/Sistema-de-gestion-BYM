@@ -1,0 +1,6 @@
+@SGBYM.api_HostAddress = http://localhost:5065
+
+GET {{SGBYM.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
