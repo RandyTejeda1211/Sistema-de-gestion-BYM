@@ -12,7 +12,7 @@ namespace SGBYM.Application.Interfaces
         Task<IEnumerable<ClientSummDTO>> GetAllClient();
         Task<ClientSummDTO> GetById(int id);
         Task CreateClient(CreateClientDTO client);
-        Task UpdateClient(ClientSummDTO client);
+        Task UpdateClient(UpdateClientDTO client);
         Task DeleteClient(int id);
     }
 }

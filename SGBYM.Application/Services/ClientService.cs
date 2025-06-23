@@ -61,16 +61,18 @@ namespace SGBYM.Application.Services
             };
         }
 
-        public async Task UpdateClient(ClientSummDTO client)
+        public async Task UpdateClient(UpdateClientDTO client)
         {
-            var cliente = new Client
-            {
-                IdCliente = client.Id,
-                Nombre = client.Nombre,
-                Apellido = client.Apellido,
-                Correo = client.Correo
-            };
-            await _clientRepository.UpdateClient(cliente);
+            var clienteExistente = await _clientRepository.GetById(client.IdCliente);
+            if (clienteExistente == null)
+                throw new Exception("Cliente no encontrado");
+            clienteExistente.IdCliente = client.IdCliente;
+            clienteExistente.Nombre = client.Nombre;
+            clienteExistente.Apellido = client.Apellido;
+            clienteExistente.Correo = client.Correo;
+            clienteExistente.Telefono = client.Telefono;
+
+            await _clientRepository.UpdateClient(clienteExistente);
         }
     }
 }
