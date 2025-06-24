@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGBYM.Application.DTOs
+namespace SGBYM.Application.DTOs.ClientDTO
 {
-    public class UpdateClientDTO
+    public class CreateClientDTO
     {
-        public int IdCliente { get; set; }
+        
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public short Edad { get; set; }
+        public int Edad { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
+        public string PasswordHash { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using SGBYM.Domain.Interfaces;
 using SGBYM.Domain.Models;
 using SGBYM.Infrastructure.Data;
 
-namespace SGBYM.Infrastructure
+namespace SGBYM.Infrastructure.Repository
 {
     public class ClientRepository : IClientRepository
     {
@@ -26,7 +26,8 @@ namespace SGBYM.Infrastructure
         public async Task DeleteClient(int id)
         {
             var client = await _context.clients.FindAsync(id);
-            if (client != null) { 
+            if (client != null)
+            {
                 _context.clients.Remove(client);
                 await _context.SaveChangesAsync();
             }
