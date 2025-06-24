@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SGBYM.Application.DTOs;
+using SGBYM.Application.DTOs.ClientDTO;
 using SGBYM.Application.Interfaces;
 
 namespace SGBYM.api.Controllers
