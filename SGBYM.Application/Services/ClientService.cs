@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SGBYM.Application.DTOs;
+using SGBYM.Application.DTOs.ClientDTO;
 using SGBYM.Application.Interfaces;
+using SGBYM.Application.Interfaces.security;
 using SGBYM.Domain.Interfaces;
 using SGBYM.Domain.Models;
 
@@ -12,22 +13,25 @@ namespace SGBYM.Application.Services
 {
     public class ClientService : IClienteService
     {
+        
         private readonly IClientRepository _clientRepository;
-        public ClientService(IClientRepository clientRepository)
+        private readonly IPassHasher _passHasher;
+        public ClientService(IClientRepository clientRepository, IPassHasher passHasher)
         {
             _clientRepository = clientRepository;
+            this._passHasher = passHasher;
         }
 
         public async Task CreateClient(CreateClientDTO client)
         {
             var cliente = new Client
             {
-                IdCliente = client.Id,
                 Nombre = client.Nombre,
                 Apellido = client.Apellido,
                 Edad = (short)client.Edad,
                 Telefono = client.Telefono,
-                Correo = client.Correo
+                Correo = client.Correo,
+                PasswordHash = _passHasher.HashPassword(client.PasswordHash)
             };
             await _clientRepository.CreateClient(cliente);
         }
@@ -61,16 +65,20 @@ namespace SGBYM.Application.Services
             };
         }
 
-        public async Task UpdateClient(ClientSummDTO client)
+        public async Task UpdateClient(UpdateClientDTO client)
         {
-            var cliente = new Client
-            {
-                IdCliente = client.Id,
-                Nombre = client.Nombre,
-                Apellido = client.Apellido,
-                Correo = client.Correo
-            };
-            await _clientRepository.UpdateClient(cliente);
+            var clienteExistente = await _clientRepository.GetById(client.IdCliente);
+
+            if (clienteExistente == null)
+                throw new Exception("Cliente no encontrado");
+
+            clienteExistente.IdCliente = client.IdCliente;
+            clienteExistente.Nombre = client.Nombre;
+            clienteExistente.Apellido = client.Apellido;
+            clienteExistente.Correo = client.Correo;
+            clienteExistente.Telefono = client.Telefono;
+
+            await _clientRepository.UpdateClient(clienteExistente);
         }
     }
 }
