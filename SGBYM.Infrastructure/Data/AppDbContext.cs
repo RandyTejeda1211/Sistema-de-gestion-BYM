@@ -17,6 +17,7 @@ namespace SGBYM.Infrastructure.Data
         }
 
         public DbSet<Client> clients { get; set; }
+        public DbSet<Administrator> administrators { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +29,18 @@ namespace SGBYM.Infrastructure.Data
                 entity.Property(e => e.Correo).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.Telefono).IsRequired().HasMaxLength(20);
             });
+            modelBuilder.Entity<Administrator>(entity =>
+            {
+                entity.ToTable("administrador");
+                entity.HasKey(x => x.idAdmin);
+                entity.Property(e => e.username).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.passwordHash)
+                    .HasColumnName("password")
+                    .IsRequired()
+                    .HasMaxLength(100);
+                entity.Property(e => e.correo).IsRequired().HasMaxLength(100);
+            });
         }
+        
     }
 }
