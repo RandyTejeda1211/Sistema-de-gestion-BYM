@@ -68,8 +68,10 @@ namespace SGBYM.Application.Services
         public async Task UpdateClient(UpdateClientDTO client)
         {
             var clienteExistente = await _clientRepository.GetById(client.IdCliente);
+
             if (clienteExistente == null)
                 throw new Exception("Cliente no encontrado");
+
             clienteExistente.IdCliente = client.IdCliente;
             clienteExistente.Nombre = client.Nombre;
             clienteExistente.Apellido = client.Apellido;

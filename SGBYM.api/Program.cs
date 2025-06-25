@@ -4,6 +4,7 @@ using SGBYM.Application.Interfaces.security;
 using SGBYM.Application.Services;
 using SGBYM.Domain.Interfaces;
 using SGBYM.Infrastructure.Data;
+using SGBYM.Infrastructure.Repositories;
 using SGBYM.Infrastructure.Repository;
 using SGBYM.Infrastructure.Security;
 
@@ -23,6 +24,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClienteService, ClientService>();
+builder.Services.AddScoped<IAdminRepository, AdministratorRepository> ();
+builder.Services.AddScoped<IAdminService, AdminService> ();
+
 
 //configuracion de cors para que la api solo funcione desde la url seleccionada
 builder.Services.AddCors(options =>
