@@ -26,6 +26,9 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IClienteService, ClientService>();
 builder.Services.AddScoped<IAdminRepository, AdministratorRepository> ();
 builder.Services.AddScoped<IAdminService, AdminService> ();
+builder.Services.AddScoped<IServiceProvidedRepository, ServiceProvidedRepository>();
+builder.Services.AddScoped<IServiceProvided, ServiceProvidedService>();
+
 
 
 //configuracion de cors para que la api solo funcione desde la url seleccionada
@@ -35,7 +38,7 @@ builder.Services.AddCors(options =>
     {
         policy
             
-            .WithOrigins("http://127.0.0.1:3000")
+            .WithOrigins("http://127.0.0.1:3002")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
