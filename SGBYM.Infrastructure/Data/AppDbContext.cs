@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using SGBYM.Domain.Models;
 
 namespace SGBYM.Infrastructure.Data
@@ -18,6 +19,7 @@ namespace SGBYM.Infrastructure.Data
 
         public DbSet<Client> clients { get; set; }
         public DbSet<Administrator> administrators { get; set; }
+        public DbSet<ServiceProvided> serviceProvided { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +41,12 @@ namespace SGBYM.Infrastructure.Data
                     .IsRequired()
                     .HasMaxLength(100);
                 entity.Property(e => e.correo).IsRequired().HasMaxLength(100);
+            });
+            modelBuilder.Entity<ServiceProvided>(entity =>
+            {
+                entity.ToTable("servicios");
+                entity.HasKey(x => x.idServicios);
+                entity.Property(e => e.caracteristica).HasMaxLength(100);
             });
         }
         
