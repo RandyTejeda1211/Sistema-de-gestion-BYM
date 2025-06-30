@@ -20,6 +20,7 @@ namespace SGBYM.Infrastructure.Data
         public DbSet<Client> clients { get; set; }
         public DbSet<Administrator> administrators { get; set; }
         public DbSet<ServiceProvided> serviceProvided { get; set; }
+        public DbSet<Cite> cites { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +48,15 @@ namespace SGBYM.Infrastructure.Data
                 entity.ToTable("servicios");
                 entity.HasKey(x => x.idServicios);
                 entity.Property(e => e.caracteristica).HasMaxLength(100);
+            });
+            modelBuilder.Entity<Cite>( entity =>
+            {
+                entity.ToTable("cita");
+                entity.HasKey(x => x.idCita);
+                entity.HasOne(c => c.Client)
+                    .WithMany(cl => cl.Cites)
+                    .HasForeignKey(c => c.idCliente)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
         
