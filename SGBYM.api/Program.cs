@@ -28,6 +28,8 @@ builder.Services.AddScoped<IAdminRepository, AdministratorRepository> ();
 builder.Services.AddScoped<IAdminService, AdminService> ();
 builder.Services.AddScoped<IServiceProvidedRepository, ServiceProvidedRepository>();
 builder.Services.AddScoped<IServiceProvided, ServiceProvidedService>();
+builder.Services.AddScoped<ICiteRepository, CiteRepository>();
+builder.Services.AddScoped<ICiteService, CiteService>();
 
 
 

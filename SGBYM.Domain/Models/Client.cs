@@ -16,6 +16,7 @@ namespace SGBYM.Domain.Models
         public string Correo { get; set; }
         public byte[] PasswordHash { get; set; }
 
+        public  ICollection<Cite> Cites { get; set; }
         
     }
 }
