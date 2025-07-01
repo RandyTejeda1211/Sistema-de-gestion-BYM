@@ -7,10 +7,12 @@ using SGBYM.Domain.Models;
 
 namespace SGBYM.Application.DTOs.CiteDTO
 {
-    public class CiteCreateDTO
+    public class CiteSummDTO
     {
+        
         public DateTime fecha { get; set; }
         public int idCliente { get; set; }
         public bool estado { get; set; }
+        public string NombreCliente { get; set; }
     }
 }

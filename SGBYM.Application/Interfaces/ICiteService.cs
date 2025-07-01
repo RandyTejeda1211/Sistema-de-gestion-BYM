@@ -10,5 +10,6 @@ namespace SGBYM.Application.Interfaces
     public interface ICiteService
     {
         Task CreateCite(CiteCreateDTO cite);
+        Task<IEnumerable<CiteSummDTO>> GetAllCite();
     }
 }
