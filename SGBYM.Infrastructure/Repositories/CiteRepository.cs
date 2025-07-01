@@ -37,7 +37,9 @@ namespace SGBYM.Infrastructure.Repositories
 
         public async Task<IEnumerable<Cite>> GetAllCites()
         {
-            return await _appDbContext.cites.ToListAsync();
+            return await _appDbContext.cites
+                .Include(C => C.Client)
+                .ToListAsync();
         }
 
         public async Task<Cite> GetById(int id)

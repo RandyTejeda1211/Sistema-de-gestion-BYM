@@ -23,8 +23,24 @@ namespace SGBYM.Application.Services
             {
                 fecha = cite.fecha,
                 idCliente = cite.idCliente,
+                estado = true,
             };
             await _citeRepository.CreateCita(cites);
         }
+
+        public async Task<IEnumerable<CiteSummDTO>> GetAllCite()
+        {
+            var cites = await _citeRepository.GetAllCites();
+            return cites.Select(c => new CiteSummDTO
+            {
+                fecha = c.fecha,
+                idCliente = c.idCliente,
+                estado = c.estado,
+                NombreCliente = c.Client.Nombre
+            });
+            
+        }
+
+        
     }
 }

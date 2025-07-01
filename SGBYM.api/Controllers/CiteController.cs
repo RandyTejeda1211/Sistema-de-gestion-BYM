@@ -22,5 +22,8 @@ namespace SGBYM.api.Controllers
             await _citeService.CreateCite(citeCreate);
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll() => Ok(await _citeService.GetAllCite());
     }
 }
