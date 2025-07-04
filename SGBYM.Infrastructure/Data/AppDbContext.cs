@@ -21,6 +21,8 @@ namespace SGBYM.Infrastructure.Data
         public DbSet<Administrator> administrators { get; set; }
         public DbSet<ServiceProvided> serviceProvided { get; set; }
         public DbSet<Cite> cites { get; set; }
+        public DbSet<ServicePRegistered> servicePRegistereds { get; set; }
+        public DbSet<Bills> bills { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -57,6 +59,35 @@ namespace SGBYM.Infrastructure.Data
                     .WithMany(cl => cl.Cites)
                     .HasForeignKey(c => c.idCliente)
                     .OnDelete(DeleteBehavior.Cascade);
+            });
+            modelBuilder.Entity<ServicePRegistered>(entity =>
+            {
+                entity.ToTable("servicio_registrado");
+                entity.HasKey(x => x.idServicioRegistrado);
+
+                entity.HasOne(e => e.Cite)
+                    .WithMany(c => c.servicePRegistereds)
+                    .HasForeignKey(c => c.idCita)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(e => e.ServiceP)
+                    .WithMany(s => s.servicePRegistereds)
+                    .HasForeignKey(e => e.idServicio)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+            modelBuilder.Entity<Bills>(entity =>
+            {
+                entity.ToTable("facturas");
+                entity.HasKey(x => x.idfacturas);
+                entity.Property(x => x.serial)
+                    .HasMaxLength(50)
+                    .IsRequired();
+
+                entity.HasOne(c => c.ServicePRegistered)
+                    .WithMany(c => c.bills)
+                    .HasForeignKey(c => c.idServicioRegistrado)
+                    .OnDelete(DeleteBehavior.Cascade);
+                    
             });
         }
         
