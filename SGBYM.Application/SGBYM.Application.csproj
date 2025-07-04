@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SGBYM.Domain\SGBYM.Domain.csproj" />
+    <ProjectReference Include="..\SGBYM.Infrastructure\SGBYM.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
