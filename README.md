@@ -18,7 +18,8 @@ Un sistema intuitivo para administrar citas de manera eficiente, ideal para cons
 
 ## Instalación
 ```
-Git clone https://github.com/RandyTejeda1211/Sistema-de-gestion-BYM.git
+$ Git clone https://github.com/RandyTejeda1211/Sistema-de-gestion-BYM.git
+$ cd Sistema-de-gestion-BYM
 ```
 
 
