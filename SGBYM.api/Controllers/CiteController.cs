@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SGBYM.Application.DTOs;
+using SGBYM.Application.DTOs.BillsDTO;
 using SGBYM.Application.DTOs.CiteDTO;
 using SGBYM.Application.Interfaces;
 
@@ -17,13 +19,20 @@ namespace SGBYM.api.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CiteCreateDTO citeCreate)
+        public async Task<IActionResult> Create([FromBody] CiteBillCreateDTO citeBillCreate)
         {
-            await _citeService.CreateCite(citeCreate);
+            await _citeService.CreateCite(citeBillCreate);
             return Ok();
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll() => Ok(await _citeService.GetAllCite());
+        
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] CiteUpdateDTO citeUpdate)
+        {
+            await _citeService.UpdateCite(citeUpdate);
+            return Ok();
+        }
     }
 }

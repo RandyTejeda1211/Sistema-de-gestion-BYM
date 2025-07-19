@@ -15,5 +15,6 @@ namespace SGBYM.Domain.Models
         public  Client Client { get; set; }
 
         public bool estado { get; set; }
+        public ICollection<ServicePRegistered> servicePRegistereds { get; set; }
     }
 }
