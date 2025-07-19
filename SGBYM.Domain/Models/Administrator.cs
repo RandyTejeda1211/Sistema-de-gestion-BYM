@@ -11,7 +11,7 @@ namespace SGBYM.Domain.Models
        
         public int idAdmin { get; set; }
         public string username { get; set; }
-        public byte[] passwordHash { get; set; }
+        public string passwordHash { get; set; }
         public string correo { get; set; }
     }
 }

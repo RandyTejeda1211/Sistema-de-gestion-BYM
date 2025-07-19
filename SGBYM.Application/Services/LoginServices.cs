@@ -30,6 +30,9 @@ namespace SGBYM.Application.Services
             if (!passValid)
                 throw new UnauthorizedAccessException("Credenciales invalidas");
 
+            ;
+
+
             var token = _jwtService.GenerateToken(user.IdCliente.ToString(), user.Correo);
 
             return new LoginResponseDTO

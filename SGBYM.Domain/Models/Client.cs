@@ -14,7 +14,7 @@ namespace SGBYM.Domain.Models
         public short Edad { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
-        public byte[] PasswordHash { get; set; }
+        public string PasswordHash { get; set; }
 
         public  ICollection<Cite> Cites { get; set; }
         

@@ -34,8 +34,8 @@ namespace SGBYM.Application.Services
         {
             var cites = new Cite
             {
-                fecha = citeBillCreate.fecha,
-                idCliente = citeBillCreate.idCliente,
+                fecha = (DateTime)citeBillCreate.fecha,
+                idCliente = (int)citeBillCreate.idCliente,
                 estado = true,
             };
             await _citeRepository.CreateCita(cites);
@@ -43,7 +43,7 @@ namespace SGBYM.Application.Services
             var ServicePRegistered = new ServicePRegistered
             {
                 idCita = cites.idCita,
-                idServicio = citeBillCreate.idServicio
+                idServicio = (int)citeBillCreate.idServicio
             };
 
             _context.servicePRegistereds.Add(ServicePRegistered);
