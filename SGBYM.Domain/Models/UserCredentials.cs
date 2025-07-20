@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace SGBYM.Domain.Models
 {
-    public class Client
+    public class UserCredentials
     {
         public int IdCliente { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public short Edad { get; set; }
-        public string Telefono { get; set; }
         public string Correo { get; set; }
         public string PasswordHash { get; set; }
-
-        public  ICollection<Cite> Cites { get; set; }
-        
     }
 }

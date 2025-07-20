@@ -30,6 +30,13 @@ builder.Services.AddScoped<IServiceProvidedRepository, ServiceProvidedRepository
 builder.Services.AddScoped<IServiceProvided, ServiceProvidedService>();
 builder.Services.AddScoped<ICiteRepository, CiteRepository>();
 builder.Services.AddScoped<ICiteService, CiteService>();
+builder.Services.AddScoped<BillService>();
+builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+builder.Services.AddScoped<ILoginService, LoginServices>();
+builder.Services.AddScoped<JwtService>();
+
+
+
 
 
 

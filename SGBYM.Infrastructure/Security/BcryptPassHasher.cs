@@ -10,16 +10,16 @@ namespace SGBYM.Infrastructure.Security
 {
     public class BcryptPassHasher : IPassHasher
     {
-        public byte[] HashPassword(string password)
+        public string HashPassword(string password)
         {
-            var hashed = BCrypt.Net.BCrypt.HashPassword(password);
-            return Encoding.UTF8.GetBytes(hashed);
+            return BCrypt.Net.BCrypt.HashPassword(password);
+            
         }
 
-        public bool VerifyPassword(string password, byte[] passwordHash)
+        public bool VerifyPassword(string password, string passwordHash)
         {
-            var hashedPassword = System.Text.Encoding.UTF8.GetString(passwordHash);
-            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+            
+            return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SGBYM.Application.Interfaces.security
 {
     public interface IPassHasher
     {
-        byte[] HashPassword(string password);
-        bool VerifyPassword(string password, byte[] passwordHash);
+        string HashPassword(string password);
+        bool VerifyPassword(string password, string passwordHash);
     }
 }

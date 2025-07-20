@@ -12,5 +12,7 @@ namespace SGBYM.Domain.Models
         public string nombre { get; set; }
         public decimal precio { get; set; }
         public string caracteristica { get; set; }
+
+        public ICollection<ServicePRegistered> servicePRegistereds { get; set; }
     }
 }
